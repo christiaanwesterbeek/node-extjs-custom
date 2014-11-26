@@ -4,11 +4,11 @@ node-extjs-custom
 Customized version of Ext JS 4.2.1 with a subset of the functionalities ported for usage in NodeJS.
 
 Functionalities included (indented by hierarchy)
-- Ext
- - Ext.Template
-  - Ext.XTemplate
- - Ext.XTemplateCompiler (required by XTemplate)
-  - Ext.XTemplateParser
+* Ext
+  * Ext.Template
+    * Ext.XTemplate
+  * Ext.XTemplateCompiler (required by XTemplate)
+    * Ext.XTemplateParser
 
 The files in this module are initially copy pasted from Ext JS 4.2.1.883.
 All Ext.define with extends usage is replaced with Parent.prototype.extraProperty For extending
