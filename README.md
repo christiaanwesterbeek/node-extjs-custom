@@ -49,3 +49,7 @@ var tpl = new Ext.XTemplate(
 var html = tpl.apply(data);
 console.log(html)
 ```
+
+##License##
+
+ExtJS is a fully licensed product for use in commercial projects or under GPL for open source projects. It is assumed that if you're using node-extjs-custom that you will conform to the licensing requirements of Sencha (http://www.sencha.com/products/extjs/license/).
