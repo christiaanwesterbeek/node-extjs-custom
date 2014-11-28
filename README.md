@@ -9,11 +9,18 @@ Functionalities included (indented by hierarchy)
 * Ext
   * Ext.Template
     * Ext.XTemplate
-  * Ext.XTemplateCompiler (required by XTemplate)
-    * Ext.XTemplateParser
+  * Ext.XTemplateParser
+    * Ext.XTemplateCompiler (required by XTemplate)
 
 The files in this module are initially copy pasted from Ext JS 4.2.1.883.
 All Ext.define with extends usage is replaced with Parent.prototype.extraProperty For extending
+
+##Install##
+Install with [npm](http://github.com/isaacs/npm)
+
+```
+npm install extjs-custom
+```
 
 ##Usage##
 
