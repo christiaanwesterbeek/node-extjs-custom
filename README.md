@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/devotis/node-extjs-custom.svg)](https://travis-ci.org/devotis/node-extjs-custom)
+
 node-extjs-custom
 =================
 
