@@ -1,69 +1,68 @@
-var Ext = require('../Ext');
-Ext.String = require('../String');
+module.exports = function(Ext) {
+    if (!Ext || !Ext.String) {
+        throw(new Error('Dependencies missing'));
+    }
 
-// @tag extras,core
-// @require ../Ext-more.js
-// @define Ext.util.Format
+    // @tag extras,core
+    // @require ../Ext-more.js
+    // @define Ext.util.Format
 
-/**
- * @class Ext.util.Format
- *  
- * This class is a centralized place for formatting functions. It includes
- * functions to format various different types of data, such as text, dates and numeric values.
- *  
- * ## Localization
- *
- * This class contains several options for localization. These can be set once the library has loaded,
- * all calls to the functions from that point will use the locale settings that were specified.
- *
- * Options include:
- *
- * - thousandSeparator
- * - decimalSeparator
- * - currenyPrecision
- * - currencySign
- * - currencyAtEnd
- *
- * This class also uses the default date format defined here: {@link Ext.Date#defaultFormat}.
- *
- * ## Using with renderers
- *
- * There are two helper functions that return a new function that can be used in conjunction with
- * grid renderers:
- *  
- *     columns: [{
- *         dataIndex: 'date',
- *         renderer: Ext.util.Format.dateRenderer('Y-m-d')
- *     }, {
- *         dataIndex: 'time',
- *         renderer: Ext.util.Format.numberRenderer('0.000')
- *     }]
- *  
- * Functions that only take a single argument can also be passed directly:
- *
- *     columns: [{
- *         dataIndex: 'cost',
- *         renderer: Ext.util.Format.usMoney
- *     }, {
- *         dataIndex: 'productCode',
- *         renderer: Ext.util.Format.uppercase
- *     }]
- *  
- * ## Using with XTemplates
- *
- * XTemplates can also directly use Ext.util.Format functions:
- *  
- *     new Ext.XTemplate([
- *         'Date: {startDate:date("Y-m-d")}',
- *         'Cost: {cost:usMoney}'
- *     ]);
- *
- * @singleton
- */
-(function() {
-    //Ext.ns('Ext.util');
-
-    var UtilFormat     = Ext.util.Format = {},
+    /**
+     * @class Ext.util.Format
+     *  
+     * This class is a centralized place for formatting functions. It includes
+     * functions to format various different types of data, such as text, dates and numeric values.
+     *  
+     * ## Localization
+     *
+     * This class contains several options for localization. These can be set once the library has loaded,
+     * all calls to the functions from that point will use the locale settings that were specified.
+     *
+     * Options include:
+     *
+     * - thousandSeparator
+     * - decimalSeparator
+     * - currenyPrecision
+     * - currencySign
+     * - currencyAtEnd
+     *
+     * This class also uses the default date format defined here: {@link Ext.Date#defaultFormat}.
+     *
+     * ## Using with renderers
+     *
+     * There are two helper functions that return a new function that can be used in conjunction with
+     * grid renderers:
+     *  
+     *     columns: [{
+     *         dataIndex: 'date',
+     *         renderer: Ext.util.Format.dateRenderer('Y-m-d')
+     *     }, {
+     *         dataIndex: 'time',
+     *         renderer: Ext.util.Format.numberRenderer('0.000')
+     *     }]
+     *  
+     * Functions that only take a single argument can also be passed directly:
+     *
+     *     columns: [{
+     *         dataIndex: 'cost',
+     *         renderer: Ext.util.Format.usMoney
+     *     }, {
+     *         dataIndex: 'productCode',
+     *         renderer: Ext.util.Format.uppercase
+     *     }]
+     *  
+     * ## Using with XTemplates
+     *
+     * XTemplates can also directly use Ext.util.Format functions:
+     *  
+     *     new Ext.XTemplate([
+     *         'Date: {startDate:date("Y-m-d")}',
+     *         'Cost: {cost:usMoney}'
+     *     ]);
+     *
+     * @singleton
+     */
+    var UtilFormat     = {},
         stripTagsRE    = /<\/?[^>]+>/gi,
         stripScriptsRe = /(?:<script.*?>)((\n|\r|.)*?)(?:<\/script>)/ig,
         nl2brRe        = /\r?\n/g,
@@ -657,6 +656,6 @@ Ext.String = require('../String');
             return s.replace(/([\-.*+?\^${}()|\[\]\/\\])/g, "\\$1");
         }
     });
-}());
 
-module.exports = Ext.util.Format;
+    return UtilFormat;
+};

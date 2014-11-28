@@ -1,8 +1,6 @@
 var should = require('should');
 
-var Ext       = require('../Ext');
-Ext.Template  = require('../Template');
-Ext.XTemplate = require('../XTemplate');
+var Ext = require('../Ext');
 
 var data = {
     name: 'Don Griffin',
@@ -18,9 +16,27 @@ var data = {
     ]
 };
 
+describe('Class instantiation and inheritance', function() {
+  it('Ext.Template instantiation should work', function() {
+    var tpl = new Ext.Template('');
+
+    (tpl instanceof Ext.Template).should.be.equal(true);
+    (tpl instanceof Ext.XTemplate).should.be.equal(false);
+    tpl.className.should.be.a.String.and.be.equal('Ext.Template');
+  });
+  it('Ext.XTemplate instantiation should work', function() {
+    var tpl = new Ext.XTemplate('');
+
+    (tpl instanceof Ext.Template).should.be.equal(true);
+    (tpl instanceof Ext.XTemplate).should.be.equal(true);
+    tpl.className.should.be.a.String.and.be.equal('Ext.XTemplate');
+  });
+});
+
 describe('Template', function() {
   it('basic compiling should work', function() {
     var tpl = new Ext.Template('Name: {0}, Age: {1}');
+    
     var html = tpl.apply(['John', 25]);
     html.should.be.a.String.and.be.equal('Name: John, Age: 25')
   });

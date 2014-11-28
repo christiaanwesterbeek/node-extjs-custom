@@ -1,4 +1,7 @@
-var Ext = {};
+module.exports = function(Ext) {
+    if (!Ext) {
+        throw(new Error('Dependencies missing'));
+    }
 // @tag foundation,core
 // @require ../version/Version.js
 // @define Ext.String
@@ -9,7 +12,6 @@ var Ext = {};
  * A collection of useful static methods to deal with strings.
  * @singleton
  */
-Ext.String = (function() {
     var trimRegex     = /^[\x09\x0a\x0b\x0c\x0d\x20\xa0\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u2028\u2029\u202f\u205f\u3000]+|[\x09\x0a\x0b\x0c\x0d\x20\xa0\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u2028\u2029\u202f\u205f\u3000]+$/g,
         escapeRe      = /('|\\)/g,
         formatRe      = /\{(\d+)\}/g,
@@ -35,7 +37,7 @@ Ext.String = (function() {
             return other.length <= s.length; 
         };
 
-    return {
+    var returnObject = {
         
         /**
          * Inserts a substring into a string.
@@ -396,12 +398,13 @@ Ext.String = (function() {
             return words || [];
         }
     };
-}());
 
-// initialize the default encode / decode entities
-Ext.String.resetCharacterEntities();
+    // initialize the default encode / decode entities
+    returnObject.resetCharacterEntities();
 
-module.exports = Ext.String;
+    return returnObject;
+};
+
 /**
  * Old alias to {@link Ext.String#htmlEncode}
  * @deprecated Use {@link Ext.String#htmlEncode} instead

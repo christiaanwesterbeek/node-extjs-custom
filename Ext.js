@@ -211,7 +211,36 @@ var Ext = { //based on 4.2.1.833 only rewritten to fit node
   },  
   log : console.log,
   util: {},
-  dom : {}
-};
+  dom : {},
+
+  /**
+   * Customized version of Ext's define method to extend a Class
+   * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create
+   * http://stackoverflow.com/questions/15192722/javascript-extending-class
+   */
+  extend: function(Parent) {
+    //define the new class that extends the parent
+    function F() {
+        // Call the parent constructor
+        Parent.apply(this, arguments);
+    }
+    // inherit parent
+    F.prototype = Object.create(Parent.prototype);//alternative: new Parent();
+
+    // correct the constructor pointer because it points to the parent
+    F.prototype.constructor = F;
+
+    return F;
+  }
+}
+
+Ext.String            = require('./String')(Ext);
+Ext.util.Format       = require('./util/Format')(Ext);
+
+Ext.XTemplateParser   = require('./XTemplateParser')(Ext);
+Ext.XTemplateCompiler = require('./XTemplateCompiler')(Ext);
+
+Ext.Template          = require('./Template')(Ext);
+Ext.XTemplate         = require('./XTemplate')(Ext);
 
 module.exports = Ext;
