@@ -1,0 +1,17 @@
+{
+  "name": "extjs-custom",
+  "description": "Customized version of Ext JS 4.2.1 with a subset of the functionalities ported for usage in NodeJS. Currently the subset is Xtemplate and Template",
+  "author": "Christiaan Westerbeek <chris@devotis.nl>",
+  "keywords": [
+    "extjs",
+    "template"
+  ],
+  "version": "0.1.0",
+  "repository": {
+    "url": "https://github.com/devotis/node-extjs-custom"
+  },
+  "main": "Ext.js",
+  "engines": {
+    "node": "*"
+  }
+}
