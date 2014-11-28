@@ -25,8 +25,7 @@ npm install extjs-custom
 ##Usage##
 
 ```javascript
-var Ext       = require('./Ext');
-Ext.XTemplate = require('./XTemplate');
+var Ext = require('extjs-custom');
 
 var data = {
     name: 'Don Griffin',
