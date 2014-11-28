@@ -19,5 +19,9 @@
   "bugs": {
     "url" : "https://github.com/devotis/node-extjs-custom/issues",
     "email" : "chris@devotis.nl"
+  },
+  "devDependencies": {
+    "mocha": "2.0.x",
+    "should": "4.3.x"
   }
 }
