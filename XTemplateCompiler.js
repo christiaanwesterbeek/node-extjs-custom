@@ -5,6 +5,8 @@ module.exports = function(Ext) {
     
     var XTemplateCompiler = Ext.extend(Ext.XTemplateParser);
 
+    XTemplateCompiler.prototype.className = 'Ext.XTemplateCompiler';
+
     // @tag core
     /**
      * This class compiles the XTemplate syntax into a function object. The function is used
@@ -540,6 +542,9 @@ module.exports = function(Ext) {
     XTemplateCompiler.prototype.aposRe = /[']/g;
     XTemplateCompiler.prototype.intRe =  /^\s*(\d+)\s*$/;
     XTemplateCompiler.prototype.tagRe =  /^([\w-\.\#\$]+)(?:\:([\w\.]*)(?:\((.*?)?\))?)?(\s?[\+\-\*\/]\s?[\d\.\+\-\*\/\(\)]+)?$/;
+
+    XTemplateCompiler.prototype.fnArgs = 'out,values,parent,xindex,xcount,xkey';
+    XTemplateCompiler.prototype.callFn = '.call(this,' + XTemplateCompiler.prototype.fnArgs + ')';
 
     return XTemplateCompiler;
 };

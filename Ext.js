@@ -218,7 +218,7 @@ var Ext = { //based on 4.2.1.833 only rewritten to fit node
    * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create
    * http://stackoverflow.com/questions/15192722/javascript-extending-class
    */
-  extend: function(Parent) {
+  extend: function(Parent, data) {
     //define the new class that extends the parent
     function F() {
         // Call the parent constructor

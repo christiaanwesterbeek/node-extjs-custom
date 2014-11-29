@@ -17,6 +17,20 @@ var data = {
 };
 
 describe('Class instantiation and inheritance', function() {
+  it('Ext.XTemplateParser instantiation should work', function() {
+    var x = new Ext.XTemplateParser();
+
+    (x instanceof Ext.XTemplateParser).should.be.equal(true);
+    (x instanceof Ext.XTemplateCompiler).should.be.equal(false);
+    x.className.should.be.a.String.and.be.equal('Ext.XTemplateParser');
+  });
+  it('Ext.XTemplateCompiler instantiation should work', function() {
+    var x = new Ext.XTemplateCompiler();
+
+    (x instanceof Ext.XTemplateParser).should.be.equal(true);
+    (x instanceof Ext.XTemplateCompiler).should.be.equal(true);
+    x.className.should.be.a.String.and.be.equal('Ext.XTemplateCompiler');
+  });
   it('Ext.Template instantiation should work', function() {
     var tpl = new Ext.Template('');
 
@@ -38,7 +52,7 @@ describe('Template', function() {
     var tpl = new Ext.Template('Name: {0}, Age: {1}');
     
     var html = tpl.apply(['John', 25]);
-    html.should.be.a.String.and.be.equal('Name: John, Age: 25')
+    html.should.be.a.String.and.be.equal('Name: John, Age: 25');
   });
 });
 
@@ -55,7 +69,9 @@ describe('XTemplate', function() {
     );
 
     var html = tpl.apply(data);
-    html.should.be.a.String.and.be.equal('<p>Name: Don Griffin</p><p>Title: Senior Technomage</p><p>Company: Sencha Inc.</p><p>Kids: <tpl for="kids"><p>Don Griffin</p></tpl></p>')
+    //The test below is to see that it's Actually XTemplate at work an not Template
+    html.should.be.a.String.and.not.be.equal('<p>Name: Don Griffin</p><p>Title: Senior Technomage</p><p>Company: Sencha Inc.</p><p>Kids: <tpl for="kids"><p>Don Griffin</p></tpl></p>')
+    html.should.be.a.String.and.be.equal('<p>Name: Don Griffin</p><p>Title: Senior Technomage</p><p>Company: Sencha Inc.</p><p>Kids: <p>Aubrey</p><p>Joshua</p><p>Cale</p><p>Nikol</p><p>Solomon</p></p>');
   });
 });
 
