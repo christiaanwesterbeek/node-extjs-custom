@@ -232,32 +232,37 @@ var Ext = { //based on 4.2.1.833 only rewritten to fit node
 
     return F;
   },
-}
-
-//http://stackoverflow.com/questions/20129236/creating-functions-dynamically-in-js
-//
-Ext.functionFactory= function() {
-  var me = this,
-      args = Array.prototype.slice.call(arguments),
-      ln;
-     
+  
   /**
+   * Customized version of Ext's functionFactory method
    * Alternative way of Sandboxing needed. To get Ext in scope of the function produced by Ext.functionFactory
    * Make sure to add scope.ExtReference=Ext when you call the produced function
    * 2 Examples can be found in lang/Date.js. It's like this:
    * var f = Ext.functionFactory("return 'stuff'"");
-   * date.ExtReference = Ext;
+   * date.ExtReference = Ext; // <-- adding a reference to Ext in the scope of where the function is called in
    * return f.call(date);
+   *
+   * About creating functions with dynamic code (last line of functionFactory)
+   * - http://stackoverflow.com/questions/20129236/creating-functions-dynamically-in-js
+   * - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function
    */
-  if (true) { 
-      ln = args.length;
-      if (ln > 0) {
-          ln--;
-          args[ln] = 'var Ext=this.ExtReference;' + args[ln];
-      }
-  }
+  functionFactory: function() {
+    var me = this,
+        args = Array.prototype.slice.call(arguments),
+        ln;
+       
+    //Start adding sandboxing
+    if (true) { 
+        ln = args.length;
+        if (ln > 0) {
+            ln--;
+            args[ln] = 'var Ext=this.ExtReference;' + args[ln];
+        }
+    }
+    //End adding sandboxing
 
-  return Function.prototype.constructor.apply(Function.prototype, args);
+    return Function.prototype.constructor.apply(Function.prototype, args);
+  }
 };
 
 Ext.String            = require('./lang/String')(Ext);
