@@ -73,5 +73,15 @@ describe('XTemplate', function() {
     html.should.be.a.String.and.not.be.equal('<p>Name: Don Griffin</p><p>Title: Senior Technomage</p><p>Company: Sencha Inc.</p><p>Kids: <tpl for="kids"><p>Don Griffin</p></tpl></p>')
     html.should.be.a.String.and.be.equal('<p>Name: Don Griffin</p><p>Title: Senior Technomage</p><p>Company: Sencha Inc.</p><p>Kids: <p>Aubrey</p><p>Joshua</p><p>Cale</p><p>Nikol</p><p>Solomon</p></p>');
   });
+
+  it('date formatting functions should work', function() {
+    var tpl = new Ext.XTemplate(
+      '<p>{name:date("Y-m-d")}</p>'
+    );
+
+    var html = tpl.apply({name: new Date(2014, 10, 29)});
+    //The test below is to see that it's Actually XTemplate at work an not Template
+    html.should.be.a.String.and.be.equal('<p>2014-11-29</p>');
+  });
 });
 

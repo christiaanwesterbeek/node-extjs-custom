@@ -209,7 +209,7 @@ var Ext = { //based on 4.2.1.833 only rewritten to fit node
       // Test against whitelist which includes known iterable collection types
       return iterableRe.test(toString.call(value));
   },  
-  log : console.log,
+  log : function(str) {throw(new Error(str))},//console.error,
   util: {},
   dom : {},
 
@@ -231,10 +231,38 @@ var Ext = { //based on 4.2.1.833 only rewritten to fit node
     F.prototype.constructor = F;
 
     return F;
-  }
+  },
 }
 
-Ext.String            = require('./String')(Ext);
+//http://stackoverflow.com/questions/20129236/creating-functions-dynamically-in-js
+//
+Ext.functionFactory= function() {
+  var me = this,
+      args = Array.prototype.slice.call(arguments),
+      ln;
+     
+  /**
+   * Alternative way of Sandboxing needed. To get Ext in scope of the function produced by Ext.functionFactory
+   * Make sure to add scope.ExtReference=Ext when you call the produced function
+   * 2 Examples can be found in lang/Date.js. It's like this:
+   * var f = Ext.functionFactory("return 'stuff'"");
+   * date.ExtReference = Ext;
+   * return f.call(date);
+   */
+  if (true) { 
+      ln = args.length;
+      if (ln > 0) {
+          ln--;
+          args[ln] = 'var Ext=this.ExtReference;' + args[ln];
+      }
+  }
+
+  return Function.prototype.constructor.apply(Function.prototype, args);
+};
+
+Ext.String            = require('./lang/String')(Ext);
+Ext.Date              = require('./lang/Date')(Ext);
+Ext.Number            = require('./lang/Number')(Ext);
 Ext.util.Format       = require('./util/Format')(Ext);
 
 Ext.XTemplateParser   = require('./XTemplateParser')(Ext);
