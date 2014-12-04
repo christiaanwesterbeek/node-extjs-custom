@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/devotis/node-extjs-custom.svg)](https://travis-ci.org/devotis/node-extjs-custom)
+[![npm version](https://badge.fury.io/js/extjs-custom.svg)](https://www.npmjs.org/package/extjs-custom)
 
 node-extjs-custom
 =================
