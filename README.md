@@ -4,7 +4,7 @@
 node-extjs-custom
 =================
 
-Customized version of Ext JS 4.2.1 with a subset of the functionalities ported for usage in NodeJS.
+Customized version of Ext JS 4.2.1 containg only the Templating functionality. The files in this module are initially copy pasted from Ext JS 4.2.1.883. And then needed to do some tweaking for usage in Node. All Ext.define (with extends) usage is replaced with a plain vanilla Ext.extend method.
 
 Functionalities included (indented by hierarchy)
 * Ext
@@ -12,9 +12,6 @@ Functionalities included (indented by hierarchy)
     * Ext.XTemplate
   * Ext.XTemplateParser
     * Ext.XTemplateCompiler (required by XTemplate)
-
-The files in this module are initially copy pasted from Ext JS 4.2.1.883.
-All Ext.define (with extends) usage is replaced with a plain vanilla Ext.extend method.
 
 ##Install##
 Install with [npm](http://github.com/isaacs/npm)
